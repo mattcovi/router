@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    // Function to check if the user is using an iOS device
+    function isIOS() {
+      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    // Function to check if the user is using an Android device
+    function isAndroid() {
+      return /Android/i.test(navigator.userAgent);
+    }
+
+    // Function to handle the routing based on the device type
+    function routeBasedOnDevice() {
+      if (isIOS()) {
+        // iOS Device
+        // Attempt to open the native app
+        window.location.href = "DIRECTFCU://Mobile/ChimneyHomeSSO";
+        
+        // Wait for a few seconds, and if the app doesn't open, redirect to the web URL
+        setTimeout(function() {
+          window.location.href = "https://olb.direct.com/Mobile/ChimneyHomeSSO";
+        }, 3000); // You can adjust the timeout duration as needed
+      } else if (isAndroid()) {
+        // Android Device
+        // Attempt to open the native app
+        window.location.href = "alkami-directfcu://Mobile/ChimneyHomeSSO";
+
+        // Wait for a few seconds, and if the app doesn't open, redirect to the web URL
+        setTimeout(function() {
+          window.location.href = "https://olb.direct.com/Mobile/ChimneyHomeSSO";
+        }, 3000); // You can adjust the timeout duration as needed
+      } else {
+        // Desktop Browser
+        // Redirect to the desktop web URL
+        window.location.href = "https://olb.direct.com/ChimneyHomeSSO";
+      }
+    }
+
+    // When the page loads, determine the device type and route accordingly
+    window.onload = routeBasedOnDevice;
+  </script>
+</head>
+<body>
+  <!-- This is a placeholder page that will execute the routing script. -->
+</body>
+</html>
