@@ -1,34 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script>
-    function createUniqueURL(settings) {
-      // ... (your existing createUniqueURL code)
-
-      return { uniqueURL, code };
-    }
-
-    function handleSubmit() {
-      // Get values from the form inputs
-      var baseURL = document.getElementById('baseURL').value;
-      var iosAppURL = document.getElementById('iosAppURL').value;
-      var androidAppURL = document.getElementById('androidAppURL').value;
-
-      // Create the settings object
-      var settings = {
-        baseURL: baseURL,
-        iosAppURL: iosAppURL,
-        androidAppURL: androidAppURL,
-      };
-
-      // Call the function to create the unique URL and code
-      var result = createUniqueURL(settings);
-
-      // Display the unique URL and generated code
-      document.getElementById('uniqueURL').textContent = 'Unique URL: ' + result.uniqueURL;
-      document.getElementById('generatedCode').textContent = 'Generated Code:\n' + result.code;
-    }
-  </script>
+  <!-- Include the external JavaScript file from the Gist -->
+  <script src="https://gist.github.com/mattcovi/f885583916faf761c9841172e241421c.js"></script>
 </head>
 <body>
   <h1>Settings Form</h1>
@@ -39,7 +13,7 @@
     <label for="iosAppURL">iOS App URL:</label>
     <input type="text" id="iosAppURL" placeholder="Enter iOS App URL"><br>
 
-    <label for="androidAppURL">Android App URL:</label>
+    <label for "androidAppURL">Android App URL:</label>
     <input type="text" id="androidAppURL" placeholder="Enter Android App URL"><br>
 
     <button type="button" onclick="handleSubmit()">Generate URL and Code</button>
