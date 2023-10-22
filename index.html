@@ -2,6 +2,18 @@
 <html>
 <head>
   <title>Router Settings</title>
+  <script>
+    // Function to generate a random path with 5 random characters
+    function generateRandomPath() {
+      return Math.random().toString(36).substring(2, 7);
+    }
+
+    // Function to update the path input field with a random path
+    function updatePathInput() {
+      const pathInput = document.getElementById("path-input");
+      pathInput.value = generateRandomPath();
+    }
+  </script>
 </head>
 <body>
   <h1>Router Settings</h1>
@@ -20,6 +32,12 @@
 
     <label for="fallback-url-android">Fallback URL for Android:</label>
     <input type="text" id="fallback-url-android" name="fallback-url-android"><br>
+
+    <!-- Input field to display the generated path -->
+    <label for="path-input">Generated Path:</label>
+    <input type="text" id="path-input" name="path-input" readonly><br>
+
+    <button type="button" onclick="updatePathInput()">Generate Path</button><br>
 
     <input type="submit" value="Submit">
   </form>
