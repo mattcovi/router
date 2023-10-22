@@ -8,9 +8,10 @@
       const desktopURL = document.getElementById("desktop-url").value;
       const iosURL = document.getElementById("ios-url").value;
       const androidURL = document.getElementById("android-url").value;
+      const mobileFallbackURL = document.getElementById("mobile-fallback-url").value;
 
       // Construct the custom URL with query parameters
-      const customURL = `https://mattcovi.github.io/execute.html?desktop=${desktopURL}&ios=${iosURL}&android=${androidURL}`;
+      const customURL = `https://mattcovi.github.io/execute.html?desktop=${desktopURL}&ios=${iosURL}&android=${androidURL}&mobileFallback=${mobileFallbackURL}`;
 
       // Update the URL field with the generated URL
       document.getElementById("custom-url").value = customURL;
@@ -28,6 +29,9 @@
 
     <label for="android-url">Android URL:</label>
     <input type="text" id="android-url" name="android-url"><br>
+
+    <label for="mobile-fallback-url">Mobile Fallback URL:</label>
+    <input type="text" id="mobile-fallback-url" name="mobile-fallback-url"><br>
 
     <!-- Input field to display the generated custom URL -->
     <label for="custom-url">Generated URL with Settings:</label>
