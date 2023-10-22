@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://gist.github.com/mattcovi/f885583916faf761c9841172e241421c.js"></script>
-</head>
-<body>
-  <!-- This page will execute the script using parameters from the URL -->
+  <!-- Include your script directly within the HTML -->
   <script>
-    // Function to execute the script with URL parameters
+    // Function to execute the script based on device and URLs
     function executeScriptWithParams() {
       const params = new URLSearchParams(window.location.search);
       const desktopURL = params.get('desktop');
@@ -14,15 +11,52 @@
       const androidURL = params.get('android');
       const mobileFallbackURL = params.get('mobileFallback');
 
-      // Call the script function with the parameters
-      // Replace 'scriptFunction' with the actual function in the script
-      if (typeof scriptFunction === 'function') {
-        scriptFunction(desktopURL, iosURL, androidURL, mobileFallbackURL);
+      // Check if the user is using an iOS device
+      function isIOS() {
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent);
       }
+
+      // Check if the user is using an Android device
+      function isAndroid() {
+        return /Android/i.test(navigator.userAgent);
+      }
+
+      // Function to handle the routing based on the device type
+      function routeBasedOnDevice() {
+        if (isIOS()) {
+          // iOS Device
+          // Attempt to open the native app
+          window.location.href = iosURL;
+
+          // Wait for a few seconds, and if the app doesn't open, redirect to the mobileFallbackURL
+          setTimeout(function() {
+            window.location.href = mobileFallbackURL;
+          }, 3000); // You can adjust the timeout duration as needed
+        } else if (isAndroid()) {
+          // Android Device
+          // Attempt to open the native app
+          window.location.href = androidURL;
+
+          // Wait for a few seconds, and if the app doesn't open, redirect to the mobileFallbackURL
+          setTimeout(function() {
+            window.location.href = mobileFallbackURL;
+          }, 3000); // You can adjust the timeout duration as needed
+        } else {
+          // Desktop Browser
+          // Redirect to the desktop web URL
+          window.location.href = desktopURL;
+        }
+      }
+
+      // Execute the routing function when the page loads
+      routeBasedOnDevice();
     }
 
     // Execute the script with URL parameters when the page loads
     executeScriptWithParams();
   </script>
+</head>
+<body>
+  <!-- You can add additional content or leave this empty -->
 </body>
 </html>
