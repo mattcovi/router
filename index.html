@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Include the external JavaScript file from the Gist -->
+  <!-- Link to your external JavaScript file on GitHub Gist -->
   <script src="https://gist.github.com/mattcovi/f885583916faf761c9841172e241421c.js"></script>
+
+  <!-- JavaScript to handle form submission and URL generation -->
+  <script>
+    // Function to handle form submission and URL generation
+    function handleFormSubmit(event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+
+      // Retrieve form values
+      const iosInput = document.getElementById("ios-input").value;
+      const androidInput = document.getElementById("android-input").value;
+
+      // Generate the custom URL based on form inputs
+      const customURL = `https://mattcovi.github.io/router/${iosInput}${androidInput}`;
+
+      // Redirect to the custom URL
+      window.location.href = customURL;
+    }
+  </script>
 </head>
 <body>
-  <h1>Settings Form</h1>
-  <form>
-    <label for="baseURL">Base URL:</label>
-    <input type="text" id="baseURL" placeholder="Enter Base URL"><br>
+  <h1>Router Settings</h1>
+  <form id="router-form" onsubmit="handleFormSubmit(event)">
+    <label for="ios-input">iOS Settings:</label>
+    <input type="text" id="ios-input" name="ios-input"><br>
 
-    <label for="iosAppURL">iOS App URL:</label>
-    <input type="text" id="iosAppURL" placeholder="Enter iOS App URL"><br>
+    <label for="android-input">Android Settings:</label>
+    <input type="text" id="android-input" name="android-input"><br>
 
-    <label for "androidAppURL">Android App URL:</label>
-    <input type="text" id="androidAppURL" placeholder="Enter Android App URL"><br>
-
-    <button type="button" onclick="handleSubmit()">Generate URL and Code</button>
+    <input type="submit" value="Submit">
   </form>
-
-  <h2>Generated Result</h2>
-  <p id="uniqueURL"></p>
-  <pre id="generatedCode"></pre>
 </body>
 </html>
