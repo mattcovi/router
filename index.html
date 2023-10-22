@@ -2,48 +2,51 @@
 <html>
 <head>
   <script>
-    // Function to check if the user is using an iOS device
-    function isIOS() {
-      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    function createUniqueURL(settings) {
+      // ... (your existing createUniqueURL code)
+
+      return { uniqueURL, code };
     }
 
-    // Function to check if the user is using an Android device
-    function isAndroid() {
-      return /Android/i.test(navigator.userAgent);
+    function handleSubmit() {
+      // Get values from the form inputs
+      var baseURL = document.getElementById('baseURL').value;
+      var iosAppURL = document.getElementById('iosAppURL').value;
+      var androidAppURL = document.getElementById('androidAppURL').value;
+
+      // Create the settings object
+      var settings = {
+        baseURL: baseURL,
+        iosAppURL: iosAppURL,
+        androidAppURL: androidAppURL,
+      };
+
+      // Call the function to create the unique URL and code
+      var result = createUniqueURL(settings);
+
+      // Display the unique URL and generated code
+      document.getElementById('uniqueURL').textContent = 'Unique URL: ' + result.uniqueURL;
+      document.getElementById('generatedCode').textContent = 'Generated Code:\n' + result.code;
     }
-
-    // Function to handle the routing based on the device type
-    function routeBasedOnDevice() {
-      if (isIOS()) {
-        // iOS Device
-        // Attempt to open the native app
-        window.location.href = "DIRECTFCU://Mobile/ChimneyHomeSSO";
-        
-        // Wait for a few seconds, and if the app doesn't open, redirect to the web URL
-        setTimeout(function() {
-          window.location.href = "https://olb.direct.com/Mobile/ChimneyHomeSSO";
-        }, 3000); // You can adjust the timeout duration as needed
-      } else if (isAndroid()) {
-        // Android Device
-        // Attempt to open the native app
-        window.location.href = "alkami-directfcu://Mobile/ChimneyHomeSSO";
-
-        // Wait for a few seconds, and if the app doesn't open, redirect to the web URL
-        setTimeout(function() {
-          window.location.href = "https://olb.direct.com/Mobile/ChimneyHomeSSO";
-        }, 3000); // You can adjust the timeout duration as needed
-      } else {
-        // Desktop Browser
-        // Redirect to the desktop web URL
-        window.location.href = "https://olb.direct.com/ChimneyHomeSSO";
-      }
-    }
-
-    // When the page loads, determine the device type and route accordingly
-    window.onload = routeBasedOnDevice;
   </script>
 </head>
 <body>
-  <!-- This is a placeholder page that will execute the routing script. -->
+  <h1>Settings Form</h1>
+  <form>
+    <label for="baseURL">Base URL:</label>
+    <input type="text" id="baseURL" placeholder="Enter Base URL"><br>
+
+    <label for="iosAppURL">iOS App URL:</label>
+    <input type="text" id="iosAppURL" placeholder="Enter iOS App URL"><br>
+
+    <label for="androidAppURL">Android App URL:</label>
+    <input type="text" id="androidAppURL" placeholder="Enter Android App URL"><br>
+
+    <button type="button" onclick="handleSubmit()">Generate URL and Code</button>
+  </form>
+
+  <h2>Generated Result</h2>
+  <p id="uniqueURL"></p>
+  <pre id="generatedCode"></pre>
 </body>
 </html>
