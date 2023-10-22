@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://gist.github.com/mattcovi/f885583916faf761c9841172e241421c.js"></script>
+</head>
+<body>
+  <!-- This page will execute the script using parameters from the URL -->
+  <script>
+    // Function to execute the script with URL parameters
+    function executeScriptWithParams() {
+      const params = new URLSearchParams(window.location.search);
+      const desktopURL = params.get('desktop');
+      const iosURL = params.get('ios');
+      const androidURL = params.get('android');
+      const mobileFallbackURL = params.get('mobileFallback');
+
+      // Call the script function with the parameters
+      // Replace 'scriptFunction' with the actual function in the script
+      if (typeof scriptFunction === 'function') {
+        scriptFunction(desktopURL, iosURL, androidURL, mobileFallbackURL);
+      }
+    }
+
+    // Execute the script with URL parameters when the page loads
+    executeScriptWithParams();
+  </script>
+</body>
+</html>
