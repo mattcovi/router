@@ -13,12 +13,35 @@
       // Retrieve form values
       const iosInput = document.getElementById("ios-input").value;
       const androidInput = document.getElementById("android-input").value;
+      const customURL = document.getElementById("url-input").value;
 
-      // Generate the custom URL based on form inputs
-      const customURL = `https://mattcovi.github.io/router/${iosInput}${androidInput}`;
+      // Generate the custom URLs based on form inputs
+      const iosCustomURL = `DIRECTFCU://${iosInput}`;
+      const androidCustomURL = `alkami-directfcu://${androidInput}`;
 
-      // Redirect to the custom URL
-      window.location.href = customURL;
+      if (isIOS()) {
+        // iOS Device
+        // Attempt to open the native app with custom settings
+        window.location.href = iosCustomURL;
+
+        // Wait for a few seconds, and if the app doesn't open, redirect to the web URL
+        setTimeout(function() {
+          window.location.href = customURL;
+        }, 3000); // You can adjust the timeout duration as needed
+      } else if (isAndroid()) {
+        // Android Device
+        // Attempt to open the native app with custom settings
+        window.location.href = androidCustomURL;
+
+        // Wait for a few seconds, and if the app doesn't open, redirect to the web URL
+        setTimeout(function() {
+          window.location.href = customURL;
+        }, 3000); // You can adjust the timeout duration as needed
+      } else {
+        // Desktop Browser
+        // Redirect to the custom URL
+        window.location.href = customURL;
+      }
     }
   </script>
 </head>
@@ -30,6 +53,9 @@
 
     <label for="android-input">Android Settings:</label>
     <input type="text" id="android-input" name="android-input"><br>
+
+    <label for="url-input">Custom URL:</label>
+    <input type="text" id="url-input" name="url-input"><br>
 
     <input type="submit" value="Submit">
   </form>
