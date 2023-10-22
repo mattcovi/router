@@ -1,6 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Router Settings</title>
+  <script>
+    // Function to generate the custom URL with user settings as query parameters
+    function generateCustomURL() {
+      const desktopURL = document.getElementById("desktop-url").value;
+      const iosURL = document.getElementById("ios-url").value;
+      const androidURL = document.getElementById("android-url").value;
+      const mobileFallbackURL = document.getElementById("mobile-fallback-url").value;
+
+      // Construct the custom URL with query parameters
+      const customURL = `https://mattcovi.github.io/router/execute.html?desktop=${desktopURL}&ios=${iosURL}&android=${androidURL}&mobileFallback=${mobileFallbackURL}`;
+
+      // Update the URL field with the generated URL
+      document.getElementById("custom-url").value = customURL;
+    }
+  </script>
+</head>
+<body>
+  <h1>Router Settings</h1>
+  <form id="router-form">
+    <label for="desktop-url">Base URL for Desktop:</label>
+    <input type="text" id="desktop-url" name="desktop-url"><br>
+
+    <label for="ios-url">iOS URL:</label>
+    <input type text="text" id="ios-url" name="ios-url"><br>
+
+    <label for="android-url">Android URL:</label>
+    <input type="text" id="android-url" name="android-url"><br>
+
+    <label for="mobile-fallback-url">Mobile Fallback URL:</label>
+    <input type="text" id="mobile-fallback-url" name="mobile-fallback-url"><br>
+
+    <!-- Input field to display the generated custom URL -->
+    <label for="custom-url">Generated URL with Settings:</label>
+    <input type="text" id="custom-url" name="custom-url" readonly><br>
+
+    <!-- Button to generate the custom URL -->
+    <input type="button"
+<!DOCTYPE html>
+<html>
+<head>
   <script src="https://gist.github.com/mattcovi/f885583916faf761c9841172e241421c.js"></script>
 </head>
 <body>
