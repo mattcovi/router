@@ -1,61 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Link to your external JavaScript file on GitHub Gist -->
-  <script src="https://gist.github.com/mattcovi/f885583916faf761c9841172e241421c.js"></script>
-
-  <!-- JavaScript to handle form submission and URL generation -->
-  <script>
-    // Function to handle form submission and URL generation
-    function handleFormSubmit(event) {
-      event.preventDefault(); // Prevent the default form submission behavior
-
-      // Retrieve form values
-      const iosInput = document.getElementById("ios-input").value;
-      const androidInput = document.getElementById("android-input").value;
-      const customURL = document.getElementById("url-input").value;
-
-      // Generate the custom URLs based on form inputs
-      const iosCustomURL = `DIRECTFCU://${iosInput}`;
-      const androidCustomURL = `alkami-directfcu://${androidInput}`;
-
-      if (isIOS()) {
-        // iOS Device
-        // Attempt to open the native app with custom settings
-        window.location.href = iosCustomURL;
-
-        // Wait for a few seconds, and if the app doesn't open, redirect to the web URL
-        setTimeout(function() {
-          window.location.href = customURL;
-        }, 3000); // You can adjust the timeout duration as needed
-      } else if (isAndroid()) {
-        // Android Device
-        // Attempt to open the native app with custom settings
-        window.location.href = androidCustomURL;
-
-        // Wait for a few seconds, and if the app doesn't open, redirect to the web URL
-        setTimeout(function() {
-          window.location.href = customURL;
-        }, 3000); // You can adjust the timeout duration as needed
-      } else {
-        // Desktop Browser
-        // Redirect to the custom URL
-        window.location.href = customURL;
-      }
-    }
-  </script>
+  <title>Router Settings</title>
 </head>
 <body>
   <h1>Router Settings</h1>
-  <form id="router-form" onsubmit="handleFormSubmit(event)">
-    <label for="ios-input">iOS Settings:</label>
-    <input type="text" id="ios-input" name="ios-input"><br>
+  <form id="router-form">
+    <label for="desktop-url">Base URL for Desktop:</label>
+    <input type="text" id="desktop-url" name="desktop-url"><br>
 
-    <label for="android-input">Android Settings:</label>
-    <input type="text" id="android-input" name="android-input"><br>
+    <label for="ios-url">iOS URL:</label>
+    <input type="text" id="ios-url" name="ios-url"><br>
 
-    <label for="url-input">Custom URL:</label>
-    <input type="text" id="url-input" name="url-input"><br>
+    <label for="android-url">Android URL:</label>
+    <input type="text" id="android-url" name="android-url"><br>
+
+    <label for="fallback-url-ios">Fallback URL for iOS:</label>
+    <input type="text" id="fallback-url-ios" name="fallback-url-ios"><br>
+
+    <label for="fallback-url-android">Fallback URL for Android:</label>
+    <input type="text" id="fallback-url-android" name="fallback-url-android"><br>
 
     <input type="submit" value="Submit">
   </form>
